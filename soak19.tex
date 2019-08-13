@@ -1,0 +1,61 @@
+\PassOptionsToPackage{unicode}{hyperref}
+\documentclass[aspectratio=1610, 9pt]{beamer}
+
+\usetheme{vertex}
+
+\usepackage[ngerman]{babel}
+
+\usepackage{siunitx}
+
+\usepackage{grffile}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+
+\title{Farbwahrnehmung und Datenvisualisierung}
+\author[maxnoe]{Maximilian Nöthe}
+\date[SoAk19]{PeP et al. Sommerakademie 2019}
+\institute{PeP et Al.}
+
+\begin{document}
+\maketitle
+
+\begin{frame}[t]{Überblick}
+  \tableofcontents
+\end{frame}
+
+\section{Menschliche Farbwahrnehmung}
+\bumper{Menschliche Farbwahrnehmung}
+
+
+\begin{frame}[t]{Zapfen}
+  \includegraphics{build/plots/cone_response.pdf} 
+\end{frame}
+
+
+\section{15 Minuten Einführung in Farbtheorie}
+
+\section{Datenvisualisierung}
+\bumper{Datenvisualisierung}
+
+\begin{frame}{Warum?}
+
+  {
+    \tiny
+    \input{build/img.tex}
+  }
+
+  \only<2->{%
+    \begin{tikzpicture}[remember picture, overlay, shift=(current page.center)]
+      \node[anchor=south east] (A) at (0.5\textwidth, -0.5\textheight) {{
+        \includegraphics[height=4cm]{build/plots/u_sw.png}
+      }};
+    \end{tikzpicture}
+  }
+\end{frame}
+
+\end{document}
