@@ -13,6 +13,8 @@ ax = fig.add_subplot(1, 1, 1)
 img = plt.imshow(
     z,
     cmap='jet',
+    vmin=-5e3,
+    vmax=6e3,
     extent=[-180, 180, -90, 90]
 )
 img.set_rasterized(True)
