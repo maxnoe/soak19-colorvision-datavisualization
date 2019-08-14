@@ -13,9 +13,9 @@ ax.set_title('Deuteranomalie (5 %)')
 
 shift = 0.7 * (df.L.idxmax() - df.M.idxmax())
 
-ax.plot(df.index.values, df.S, color='gray')
-ax.plot(df.index.values, df.M, ls=':', color='lightgray')
-ax.plot(df.index.values, df.L, color='gray')
+ax.plot(df.index.values, df.S, color='xkcd:blue')
+ax.plot(df.index.values, df.M, ls=':', color='xkcd:green', alpha=0.3)
+ax.plot(df.index.values, df.L, color='xkcd:red')
 ax.plot(df.index.values + shift, df.M, color='k')
 ax.arrow(df.M.idxmax(), 1.05, dx=shift, dy=0, width=0.02, length_includes_head=True, head_length=10, lw=0)
 
@@ -23,26 +23,26 @@ ax.arrow(df.M.idxmax(), 1.05, dx=shift, dy=0, width=0.02, length_includes_head=T
 ax = axs[0, 1]
 ax.set_title('Deuteranopie (1 %)')
 
-ax.plot(df.index.values, df.S, color='gray')
-ax.plot(df.index.values, df.M, ls=':', color='lightgray')
-ax.plot(df.index.values, df.L, color='gray')
+ax.plot(df.index.values, df.S, color='xkcd:blue')
+ax.plot(df.index.values, df.M, ls=':', color='xkcd:green', alpha=0.3)
+ax.plot(df.index.values, df.L, color='xkcd:red')
 
 
 ax = axs[1, 1]
 ax.set_title('Protanopie (1 %)')
 
-ax.plot(df.index.values, df.S, color='gray')
-ax.plot(df.index.values, df.L, ls=':', color='lightgray')
-ax.plot(df.index.values, df.M, color='gray')
+ax.plot(df.index.values, df.S, color='xkcd:blue')
+ax.plot(df.index.values, df.L, ls=':', color='xkcd:red', alpha=0.3)
+ax.plot(df.index.values, df.M, color='xkcd:green')
 
 ax = axs[1, 0]
 ax.set_title('Protanomalie (1 %)')
 
 shift = 0.8 * (df.M.idxmax() - df.L.idxmax())
-ax.plot(df.index.values, df.S, color='gray')
-ax.plot(df.index.values, df.L, ls=':', color='lightgray')
+ax.plot(df.index.values, df.S, color='xkcd:blue')
+ax.plot(df.index.values, df.L, ls=':', color='xkcd:red', alpha=0.3)
 ax.plot(df.index.values + shift, df.L, color='k')
-ax.plot(df.index.values, df.M, color='gray')
+ax.plot(df.index.values, df.M, color='xkcd:green')
 ax.arrow(df.L.idxmax(), 1.05, dx=shift, dy=0, width=0.02, length_includes_head=True, head_length=10, lw=0)
 
 

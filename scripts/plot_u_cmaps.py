@@ -24,14 +24,18 @@ height = plt.rcParams['figure.figsize'][1]
 
 imsave('build/plots/u_sw.png', u_sw)
 
-fig, axs = plt.subplots(2, 2, constrained_layout=True, figsize=(height, height))
+fig, axs = plt.subplots(2, 2, figsize=(0.95  * height, height))
 
 axs = axs.flatten()
 
-for i, cmap in enumerate(('gray', 'viridis', 'inferno', 'jet')):
+for i, cmap in enumerate(('gray', 'jet', 'hot', 'viridis')):
 
     axs[i].imshow(u_sw, cmap=cmap)
     axs[i].set_title(cmap)
     axs[i].set_axis_off()
+    axs[i].set_xticks([])
+    axs[i].set_yticks([])
+
+fig.tight_layout(pad=0.1, h_pad=1.2)
 
 fig.savefig('build/plots/u_cmaps.pdf')

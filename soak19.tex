@@ -2,6 +2,7 @@
 \documentclass[aspectratio=1610, 9pt]{beamer}
 
 \usetheme{vertex}
+\setbeamersize{text margin left=5mm,text margin right=5mm} 
 
 \newfontfamily\zigarette{TeX Gyre Heros}
 
@@ -117,7 +118,8 @@
   \end{center}
   
   Prozentzahlen für weiße Männer. \\
-  Wird X-chromosonal vererbt ${}⇒{}$ Frauen ca. quadratisch weniger
+  Wird X-chromosonal vererbt ${}⇒{}$ Frauen ca. quadratisch weniger\\
+  Andere Farbfehlsichtigkeiten ${}< \SI{0.01}{\percent}$
 \end{frame}
 
 \begin{frame}[t]{Farbfehlsichtigkeit}
@@ -139,7 +141,13 @@
 \end{frame}
 
 
-\section{15 Minuten Einführung in Farbtheorie}
+\section{Farbtheorie}
+\section{Farbtheorie}
+
+\begin{frame}{Farbräume}%
+  \only<1>{\includegraphics{build/plots/gamut.pdf}}%
+  \only<2>{\includegraphics{build/plots/gamut_srgb.pdf}}%
+\end{frame}%
 
 \section{Datenvisualisierung}
 \bumper{Datenvisualisierung}
@@ -153,8 +161,33 @@
       \includegraphics[height=4cm]{build/plots/u_sw.png}
     }};
     \draw[line width=5pt, ->, visible on=<2->] (A.south) to [out=270, in=180] (B.west);
-    \node [xshift=1cm, yshift=-1.5cm] at (A.south) {\Large colormap}; 
+    \node [xshift=1cm, yshift=-1.5cm, visible on=<2->] at (A.south) {\Large colormap}; 
   \end{tikzpicture}%
+\end{frame}
+
+\begin{frame}[t]{Verschiedene Colormaps}
+  \begin{columns}[onlytextwidth]%
+    \begin{column}{0.52\textwidth}%
+      \includegraphics{build/plots/u_cmaps.pdf}
+    \end{column}%
+    \hfill%
+    \begin{column}{0.47\textwidth}%
+      \begin{itemize}
+        \item Was macht eine gute colormap aus?
+        \item Welche verschiedenen Sorten gibt es?
+        \item Was für welche Daten?
+        \item Normierung?
+      \end{itemize}
+    \end{column}%
+  \end{columns}%
+\end{frame}
+
+\begin{frame}[plain]{jet}
+  \makebox[\linewidth]{\includegraphics[width=\paperwidth, height=\paperheight, keepaspectratio]{build/plots/cmap_jet.pdf}}
+\end{frame}
+
+\begin{frame}[plain]{viridis}
+  \makebox[\linewidth]{\includegraphics[width=\paperwidth, height=\paperheight, keepaspectratio]{build/plots/cmap_viridis.pdf}}
 \end{frame}
 
 \begin{frame}[t]{Wahl der Farbskala hat Konsequenzen}
@@ -182,6 +215,12 @@
     und den Menschen in Ihrer Umgebung erheblichen Schaden zu.
   \end{tcolorbox}
 \end{frame}
+
+
+\begin{frame}{Spezielle Colormaps für spezielle Daten}%
+  \only<1>{\includegraphics{build/plots/worldmap_jet.pdf}}%
+  \only<2>{\includegraphics{build/plots/worldmap_divnorm.pdf}}%
+\end{frame}%
 
 
 \end{document}

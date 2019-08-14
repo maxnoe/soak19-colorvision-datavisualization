@@ -1,4 +1,5 @@
 build
+data/ETOPO1_Ice_g_gdal.grd
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
