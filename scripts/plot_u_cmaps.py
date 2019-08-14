@@ -13,7 +13,7 @@ u_sw = img_as_ubyte(u_sw)
 rows, cols = u_sw.shape
 
 with open('build/img.tex', 'w') as f:
-    f.write(r'\begin{tabular}{' + r'r @{\hspace{0.5em}}' * cols + '}\n')
+    f.write(r'\begin{tabular}{' + r'@{} r @{\hspace{0.5em}}' * cols + '@{}}\n')
 
     for row in u_sw:
         f.write('  ' + ' & '.join(row.astype(str)) + r'\\' + '\n')

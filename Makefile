@@ -3,8 +3,12 @@ all: build/soak19.pdf
 
 build/soak19.pdf: build/img.tex
 build/soak19.pdf: build/plots/u_cmaps.pdf
+build/soak19.pdf: build/plots/norainbow.pdf
+build/soak19.pdf: build/plots/colorblind_response.pdf
 build/soak19.pdf: build/plots/u_sw.png
 build/soak19.pdf: build/plots/cone_response.pdf
+build/soak19.pdf: build/plots/photopic.pdf
+build/soak19.pdf: build/plots/fireworks_deuter_50.jpg build/plots/fireworks_deuter_100.jpg
 build/soak19.pdf: FORCE
 	latexmk \
 		--lualatex \
@@ -19,6 +23,10 @@ build/plots/%.pdf: scripts/plot_%.py matplotlibrc_pgf | build/plots
 build/plots/u_cmaps.pdf: images/dortmunder_u_rgb.jpg
 build/plots/u_sw.png: build/plots/u_cmaps.pdf
 build/img.tex: build/plots/u_cmaps.pdf
+
+
+build/plots/fireworks_deuter_50.jpg build/plots/fireworks_deuter_100.jpg: scripts/simulate_deuter.py images/feuerwerk.jpg  | build/plots
+	python scripts/simulate_deuter.py
 
 
 build:

@@ -10,10 +10,9 @@ text.usetex : True
 pgf.texsystem : lualatex
 pgf.preamble : \input{header-matplotlib.tex}
 
-lines.linewidth: 1
-patch.linewidth: 1
+lines.linewidth: 2
+patch.linewidth: 2
 patch.antialiased: True
 
-axes.linewidth: 1
 axes.labelsize: medium
 axes.axisbelow: True
