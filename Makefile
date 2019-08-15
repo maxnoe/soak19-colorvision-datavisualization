@@ -7,10 +7,14 @@ build/soak19.pdf: build/plots/norainbow.pdf
 build/soak19.pdf: build/plots/colorblind_response.pdf
 build/soak19.pdf: build/plots/u_sw.png
 build/soak19.pdf: build/plots/cone_response.pdf
+build/soak19.pdf: build/plots/cone_response_matrix.pdf
 build/soak19.pdf: build/plots/photopic.pdf
 build/soak19.pdf: build/plots/cmap_jet.pdf
 build/soak19.pdf: build/plots/cmap_viridis.pdf
-build/soak19.pdf: build/plots/worldmap_divnorm.pdf build/plots/worldmap_jet.pdf
+build/soak19.pdf: build/plots/gamut.pdf
+build/soak19.pdf: build/plots/gamut_srgb.pdf
+build/soak19.pdf: build/plots/spectrum0.pdf
+build/soak19.pdf: build/plots/europe_divnorm.pdf build/plots/europe_jet.pdf
 build/soak19.pdf: build/plots/fireworks_deuter_50.jpg build/plots/fireworks_deuter_100.jpg
 build/soak19.pdf: FORCE
 	latexmk \
@@ -41,11 +45,13 @@ data/ETOPO1_Ice_g_gdal.grd:
 	curl -L  https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO1/data/ice_surface/grid_registered/netcdf/ETOPO1_Ice_g_gdal.grd.gz | gunzip > $@
 
 
-build/plots/worldmap_divnorm.pdf build/plots/worldmap_jet.pdf: scripts/plot_worldmap.py
-build/plots/worldmap_divnorm.pdf build/plots/worldmap_jet.pdf: matplotlibrc_pgf data/ETOPO1_Ice_g_gdal.grd
-	MATPLOTLIBRC=matplotlibrc_pgf TEXINPUTS=$$(pwd): python scripts/plot_worldmap.py
-	
+build/plots/europe_divnorm.pdf build/plots/europe_jet.pdf: scripts/plot_europe.py
+build/plots/europe_divnorm.pdf build/plots/europe_jet.pdf: matplotlibrc_pgf data/ETOPO1_Ice_g_gdal.grd
+	MATPLOTLIBRC=matplotlibrc_pgf TEXINPUTS=$$(pwd): python scripts/plot_europe.py
 
+
+build/plots/spectrum0.pdf: scripts/plot_spectra.py
+	python scripts/plot_spectra.py
 
 build/plots:
 	mkdir -p $@

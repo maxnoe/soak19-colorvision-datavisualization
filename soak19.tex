@@ -23,6 +23,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{calc}
+\usetikzlibrary{positioning}
 \tikzset{
   invisible/.style={opacity=0,text opacity=0},
   visible on/.style={alt={#1{}{invisible}}},
@@ -44,7 +45,51 @@
 \maketitle
 
 \begin{frame}[t]{Überblick}
-  \tableofcontents
+  \begin{tikzpicture}[remember picture, overlay, shift=(current page.center)]
+    \tikzset{arrow/.style={->, line width=3pt, color=gray}}
+    \node[anchor=center, fill=black, text=green!70!white] (DATA) at (-5, -3.5) {\tiny%
+      \begin{tabular}{@{}r@{ }r@{ }r@{ }r@{ }r@{}}
+        129 & 135 & 184 & 211 & 167 \\
+        126 & 122 & 167 & 217 & 194 \\
+        121 & 97  & 110 & 195 & 212 \\
+        112 & 93  & 60  & 108 & 158 \\
+        96  & 59  & 43  & 51  & 51  \\
+      \end{tabular}
+    };
+    \node[anchor=center] (RGB) at (-5, -2) {\texttt{\#ff0033}};
+    \node[anchor=center] (MON) at (-5, 0) {%
+      \includegraphics[height=1.5cm]{images/monitor.jpg}%
+    };
+
+    \node[anchor=center] (LIGHT) at (-3, 2) {%
+      \begin{tikzpicture}[scale=0.25]
+        \input{colormixing.tex}
+      \end{tikzpicture}
+    };
+
+    \node[anchor=center, text width = 2.5cm] (EYE) at (1, 2) {{%
+      \includegraphics[width=\linewidth]{images/eye.jpg}\tiny\\[-2ex]
+      [www.medicalgracphics.com]
+    }};
+
+    \node[anchor=center, text width = 3.5cm] (BRAIN) at (5, -1) {{%
+      \includegraphics[width=\linewidth]{images/brain.jpg}%
+    }};
+
+    \node[left=0.2cm of DATA]  {\Large\bfseries Daten};
+    \node[left=0.2cm of RGB]  {\Large\bfseries RGB};
+    \node[left=0.2cm of MON]  {\Large\bfseries Monitor};
+    \node[above=0.0cm of LIGHT]  {\Large\bfseries Licht};
+    \node[above=0.0cm of EYE]  {\Large\bfseries Auge/Retina};
+    \node[left=0.2cm of BRAIN]  {\Large\bfseries Gehirn};
+    \node[below=0.0cm of BRAIN]  {\Large\bfseries Subjektive Wahrnehmung};
+
+    \draw[arrow] (DATA.north) -- (RGB.south);
+    \draw[arrow] (RGB.north) -- (MON.south);
+    \draw[arrow] (MON.north) to[out=90, in=180] (LIGHT.west);
+    \draw[arrow] (LIGHT.east) -- (EYE.west);
+    \draw[arrow] (EYE.east) to[out=0, in=90] (BRAIN.north);
+  \end{tikzpicture}
 \end{frame}
 
 \section{Menschliche Farbwahrnehmung}
@@ -57,7 +102,7 @@
       \begin{itemize}
         \item Erste physiologische Versuche durch Johann Wolfgang von Goethe (Zur Farbenlehre, 1810) \\
         \item Dreifarbentheorie (Young \& v. Helmholtz, 1804 / 1850)
-        \item Gegenfarbtheorie (Ewald Hering 1878) \\
+        \item Gegenfarbtheorie (Hering 1878) \\
           \begin{tabular}{r @{${}⟷  {}$} l}
             blau & gelb \\
             rot & grün \\
@@ -93,25 +138,102 @@
     \fill[color=yellow] (0, 0) rectangle (0.2\textwidth, 0.2\textwidth);
     \fill[color=blue] (0, 0) rectangle (-0.2\textwidth, -0.2\textwidth);
     \fill[color=red] (0, 0) rectangle (0.2\textwidth, -0.2\textwidth);
-    \fill[color=black] (0, 0) circle (0.02\textwidth);
+    \fill[color=black] (0, 0) circle (0.01\textwidth);
   \end{tikzpicture}
 \end{frame}
 
 \begin{frame}[c, plain]
   \begin{tikzpicture}[remember picture, overlay, shift=(current page.center)]
-    \fill[color=black] (0, 0) circle (0.02\textwidth);
+    \fill[color=black] (0, 0) circle (0.01\textwidth);
   \end{tikzpicture}
 \end{frame}
 
 
-\begin{frame}[t]{Zapfen}
+\begin{frame}[t]{Zapfen – Farben}
   \includegraphics{build/plots/cone_response.pdf} 
 \end{frame}
 
-\begin{frame}[t]{Zapfen}
+\begin{frame}[t]{Zapfen – Helligkeit}
   \includegraphics{build/plots/photopic.pdf} 
 \end{frame}
 
+
+\begin{frame}{Lichtspektren - Metamerismus}
+
+  \begin{columns}[onlytextwidth]
+    \begin{column}{0.35\textwidth}
+      \centering%
+      \includegraphics[width=\linewidth]{build/plots/spectrum0.pdf}\\[0.2cm]
+      oder\\
+      \includegraphics[width=\linewidth]{build/plots/spectrum1.pdf}\\[0.2cm]
+      oder\\
+      \includegraphics[width=\linewidth]{build/plots/spectrum2.pdf}\\[0.2cm]
+      \Huge $1\times N$
+    \end{column}
+    \begin{column}{0.04\textwidth}
+      \begin{tikzpicture}
+        \fill[black] (0, 0) circle (0.3cm);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \centering%
+      \includegraphics[width=\textwidth]{build/plots/cone_response_matrix.pdf}
+      \Huge $N \times 3$
+    \end{column}
+    \begin{column}{0.20\textwidth}
+      \Huge ${}=3$ Reize
+    \end{column}
+  \end{columns}
+  \vspace{0.5cm}
+  Viele verschiedene Spektren können die gleichen Farbreize erzeugen \\
+  Lineare Algebra!
+\end{frame}
+
+
+\section{Farbtheorie}
+\bumper{Farbtheorie}
+
+\begin{frame}{Farbräume}
+  \begin{itemize}
+    \item Farben lassen sich als 3-Vektoren Darstellen
+    \item Geeignete Basis?
+    \item Welche Bedeutung haben Abstände?
+    \item Wie finden wir Größen wie Buntton, Sättingung, Helligkeit wieder?
+  \end{itemize}
+
+  \Large $⇒{}$ Entwicklung zahlreicher Farbmodelle
+\end{frame}%
+
+\begin{frame}{CIE 1931}
+  \begin{columns}[onlytextwidth]%
+    \begin{column}{0.495\textwidth}%
+      \includegraphics{build/plots/gamut.pdf}
+    \end{column}%
+    \begin{column}{0.495\textwidth}%
+      \begin{itemize}
+        \item \enquote{Standard-Beobachter} über Messungen der Zapfenantwort
+        \item Alle wahrnehmbaren Farben
+        \item Lineare Tristimulus-Basis XYZ
+        \item Referenz für fast alle anderen Farbräume
+        \item Aber: Abstände bilden nicht den wahrgenommen Unterschied dar
+      \end{itemize}
+    \end{column}%
+  \end{columns}%
+\end{frame}
+
+\begin{frame}{CIE L*a*b 1976}
+\end{frame}
+
+\begin{frame}{RGB – Monitore, Beamer, etc.}
+      \includegraphics{build/plots/gamut_srgb.pdf}
+\end{frame}
+
+\begin{frame}{CMYK – Warum Drucken schwer ist}
+\end{frame}
+
+
+\section{Farbfehlsichtigkeit}
+\bumper{Farbfehlsichtigkeit}
 \begin{frame}[t]{Farbfehlsichtigkeit}
   \begin{center}
     \includegraphics{build/plots/colorblind_response.pdf}
@@ -141,13 +263,7 @@
 \end{frame}
 
 
-\section{Farbtheorie}
-\section{Farbtheorie}
 
-\begin{frame}{Farbräume}%
-  \only<1>{\includegraphics{build/plots/gamut.pdf}}%
-  \only<2>{\includegraphics{build/plots/gamut_srgb.pdf}}%
-\end{frame}%
 
 \section{Datenvisualisierung}
 \bumper{Datenvisualisierung}
@@ -157,11 +273,13 @@
     \node[anchor=north west, fill=black, text=green!70!white] (A) at (-0.5\textwidth, 0.4\textheight) {
       \tiny\input{build/img.tex}%
     };
-    \node[anchor=south east, visible on=<2->] (B) at (0.5\textwidth, -0.5\textheight) {{
+    \node [xshift=1cm, yshift=-1.7cm, visible on=<2->] at (A.south) {%
+      \includegraphics{build/plots/u_cmap.pdf}%
+    }; 
+    \node[anchor=south east, visible on=<3->] (B) at (0.5\textwidth, -0.5\textheight) {{
       \includegraphics[height=4cm]{build/plots/u_sw.png}
     }};
     \draw[line width=5pt, ->, visible on=<2->] (A.south) to [out=270, in=180] (B.west);
-    \node [xshift=1cm, yshift=-1.5cm, visible on=<2->] at (A.south) {\Large colormap}; 
   \end{tikzpicture}%
 \end{frame}
 
@@ -173,13 +291,23 @@
     \hfill%
     \begin{column}{0.47\textwidth}%
       \begin{itemize}
-        \item Was macht eine gute colormap aus?
+        \item Was macht eine gute Colormap aus?
         \item Welche verschiedenen Sorten gibt es?
         \item Was für welche Daten?
         \item Normierung?
       \end{itemize}
     \end{column}%
   \end{columns}%
+\end{frame}
+
+\begin{frame}{Kriterien für eine gute Colormap}
+  \begin{itemize}
+    \item Bunt
+    \item Sieht gut aus\\[2\baselineskip]
+    \item Exakte Repräsententation der Daten (\enquote{Gleichmäßige Wahrnehmung})
+    \item Auch in schwarz-weiß 
+    \item Auch für Menschen mit Farbfehlsichtigkeit
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[plain]{jet}
@@ -189,6 +317,13 @@
 \begin{frame}[plain]{viridis}
   \makebox[\linewidth]{\includegraphics[width=\paperwidth, height=\paperheight, keepaspectratio]{build/plots/cmap_viridis.pdf}}
 \end{frame}
+
+
+\begin{frame}{Spezielle Colormaps für spezielle Daten}%
+  \only<1>{\includegraphics{build/plots/europe_jet.pdf}}%
+  \only<2>{\includegraphics{build/plots/europe_divnorm.pdf}}%
+\end{frame}%
+
 
 \begin{frame}[t]{Wahl der Farbskala hat Konsequenzen}
   \begin{center}
@@ -215,12 +350,6 @@
     und den Menschen in Ihrer Umgebung erheblichen Schaden zu.
   \end{tcolorbox}
 \end{frame}
-
-
-\begin{frame}{Spezielle Colormaps für spezielle Daten}%
-  \only<1>{\includegraphics{build/plots/worldmap_jet.pdf}}%
-  \only<2>{\includegraphics{build/plots/worldmap_divnorm.pdf}}%
-\end{frame}%
 
 
 \end{document}

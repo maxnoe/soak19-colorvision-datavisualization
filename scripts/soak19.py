@@ -3,11 +3,21 @@ import colorspacious
 import numpy as np
 import pandas as pd
 from matplotlib.patches import PathPatch
+from scipy.interpolate import interp1d
 
 cmf = pd.read_csv('data/ciexyz06.csv', comment='#', index_col=0)
 XYZ = cmf.values
 cmf['x'] = XYZ[:, 0] / XYZ.sum(axis=1)
 cmf['y'] = XYZ[:, 1] / XYZ.sum(axis=1)
+
+wl_to_XYZ = interp1d(cmf.index.values, XYZ, axis=0, fill_value=[0, 0, 0], bounds_error=False)
+
+
+def wl_to_rgb(wl):
+    xyz = wl_to_XYZ(wl)
+    rgb = colorspacious.cspace_convert(xyz / 2, 'XYZ1', 'sRGB1')
+    rgb = np.clip(rgb, 0, 1)
+    return rgb
 
 
 def plot_visible_spectrum(ax=None, wl_min=390, wl_max=700, height=1):
@@ -15,11 +25,11 @@ def plot_visible_spectrum(ax=None, wl_min=390, wl_max=700, height=1):
         ax = plt.gca()
 
     wl = cmf[wl_min:wl_max].index.values
-    xyz = cmf.loc[wl_min:wl_max, ['X', 'Y', 'Z']].values
-
-    rgb = colorspacious.cspace_convert(xyz / 2, 'XYZ1', 'sRGB1')
-    rgb = np.clip(rgb, 0, 1)
-    return ax.bar(wl, height=height, color=rgb, width=np.diff(wl)[0], lw=0)
+    rgb = wl_to_rgb(wl)
+    plot = ax.bar(wl, height=height, color=rgb, width=np.diff(wl)[0], lw=0)
+    for b in plot:
+        b.set_rasterized(True)
+    return plot
 
 
 def plot_xyz_gamut(ax=None, color='k', wavelengths=True):
@@ -34,12 +44,12 @@ def plot_xyz_gamut(ax=None, color='k', wavelengths=True):
     line, = ax.plot(x, y, color=color)
 
     px = py = np.linspace(0, 1, 300)
-    x, y = np.meshgrid(px, py)
+    X, Y = np.meshgrid(px, py)
 
     xyY = np.empty((len(px), len(px), 3))
-    xyY[:, :, 0] = x
-    xyY[:, :, 1] = y
-    xyY[:, :, 2] = 0.4
+    xyY[:, :, 0] = X
+    xyY[:, :, 1] = Y
+    xyY[:, :, 2] = Y
 
     rgb = colorspacious.cspace_convert(xyY, 'xyY1', 'sRGB1')
     rgb = np.clip(rgb, 0, 1)
