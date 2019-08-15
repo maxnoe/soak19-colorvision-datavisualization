@@ -8,12 +8,14 @@ build/soak19.pdf: build/plots/colorblind_response.pdf
 build/soak19.pdf: build/plots/u_sw.png
 build/soak19.pdf: build/plots/cone_response.pdf
 build/soak19.pdf: build/plots/cone_response_matrix.pdf
+build/soak19.pdf: build/plots/lab_50.pdf
 build/soak19.pdf: build/plots/photopic.pdf
 build/soak19.pdf: build/plots/cmap_jet.pdf
 build/soak19.pdf: build/plots/cmap_viridis.pdf
 build/soak19.pdf: build/plots/gamut.pdf
 build/soak19.pdf: build/plots/gamut_srgb.pdf
 build/soak19.pdf: build/plots/spectrum0.pdf
+build/soak19.pdf: build/plots/gamma_srgb.pdf
 build/soak19.pdf: build/plots/europe_divnorm.pdf build/plots/europe_jet.pdf
 build/soak19.pdf: build/plots/fireworks_deuter_50.jpg build/plots/fireworks_deuter_100.jpg
 build/soak19.pdf: FORCE

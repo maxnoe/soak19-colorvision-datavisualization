@@ -5,12 +5,16 @@ import pandas as pd
 from matplotlib.patches import PathPatch
 from scipy.interpolate import interp1d
 
-cmf = pd.read_csv('data/ciexyz06.csv', comment='#', index_col=0)
+cmf = pd.read_csv('data/ciexyz31.csv', comment='#', index_col=0)
 XYZ = cmf.values
 cmf['x'] = XYZ[:, 0] / XYZ.sum(axis=1)
 cmf['y'] = XYZ[:, 1] / XYZ.sum(axis=1)
 
-wl_to_XYZ = interp1d(cmf.index.values, XYZ, axis=0, fill_value=[0, 0, 0], bounds_error=False)
+wl_to_XYZ = interp1d(
+    cmf.index.values,
+    XYZ,
+    axis=0, fill_value=[0, 0, 0], bounds_error=False,
+)
 
 
 def wl_to_rgb(wl):
@@ -52,7 +56,8 @@ def plot_xyz_gamut(ax=None, color='k', wavelengths=True):
     xyY[:, :, 2] = Y
 
     rgb = colorspacious.cspace_convert(xyY, 'xyY1', 'sRGB1')
-    rgb = np.clip(rgb, 0, 1)
+    # invalid = np.any((rgb < 0) | (rgb > 1.2), axis=2)
+    rgb = (rgb.T / rgb.max(axis=-1)).T
 
     im = ax.imshow(rgb[::-1], extent=[0, 1, 0, 1])
     patch = PathPatch(line.get_path(), transform=ax.transData)

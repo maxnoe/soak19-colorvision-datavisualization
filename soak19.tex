@@ -221,11 +221,44 @@
   \end{columns}%
 \end{frame}
 
-\begin{frame}{CIE L*a*b 1976}
+\begin{frame}{RGB – Monitore}
+  \begin{columns}[onlytextwidth]%
+    \begin{column}{0.495\textwidth}%
+      \includegraphics{build/plots/gamut_srgb.pdf}%
+    \end{column}%
+    \begin{column}{0.495\textwidth}%
+      \begin{itemize}
+        \item 3 Lichtquellen in jedem Pixel:
+          \begin{tikzpicture}
+            \fill[red] (0, 0) rectangle +(0.3em, 1em);
+            \fill[green] (0.35em, 0) rectangle +(0.3em, 1em);
+            \fill[blue] (0.7em, 0) rectangle +(0.3em, 1em);
+          \end{tikzpicture}
+        \item Lage in XYZ ${}⇒{}$ mögliche Farben
+        \item sRGB am verbreitetsten
+        \item AdobeRGB im professionellen Bereich
+        \item Nichtlineare Lichtmenge:
+          \includegraphics{build/plots/gamma_srgb.pdf}
+      \end{itemize}
+    \end{column}
+  \end{columns}%
 \end{frame}
 
-\begin{frame}{RGB – Monitore, Beamer, etc.}
-      \includegraphics{build/plots/gamut_srgb.pdf}
+\begin{frame}{CIE L*a*b* 1976}
+  \begin{columns}[onlytextwidth]%
+    \begin{column}{0.495\textwidth}%
+      \only<1>{\includegraphics{build/plots/lab_20.pdf}}%
+      \only<2>{\includegraphics{build/plots/lab_50.pdf}}%
+      \only<3>{\includegraphics{build/plots/lab_80.pdf}}%
+    \end{column}%
+    \begin{column}{0.495\textwidth}%
+      \begin{description}
+        \item[L] Luminanz
+        \item[a] Grün-Rot-Achse
+        \item[b] Blau-Gelb-Achse
+      \end{description}
+    \end{column}%
+  \end{columns}%
 \end{frame}
 
 \begin{frame}{CMYK – Warum Drucken schwer ist}
