@@ -1,0 +1,22 @@
+\draw [draw=none, fill=cyan] (90:1.5) circle (2cm);
+\draw [draw=none, fill=yellow] (-30:1.5) circle (2cm);
+\draw [draw=none, fill=magenta] (210:1.5) circle (2cm);
+
+\begin{scope} 
+	\clip (90:1.5) circle(2cm);
+	\draw [draw=none, fill=green] (-30:1.5) circle (2cm);
+\end{scope} % blue + red = magenta
+\begin{scope}
+	\clip (210:1.5) circle(2cm);
+	\draw [draw=none, fill=blue] (90:1.5) circle (2cm);
+\end{scope}
+\begin{scope} % green + blue = cyan
+	\clip (-30:1.5) circle(2cm);
+	\draw [draw=none, fill=red] (210:1.5) circle (2cm);
+\end{scope}
+
+\begin{scope}
+	\clip (90:1.5) circle(2cm);
+	\clip (210:1.5) circle(2cm);
+	\draw [draw=none, fill=black] (-30:1.5) circle (2cm);	
+\end{scope}

@@ -28,8 +28,11 @@ def plot_visible_spectrum(ax=None, wl_min=390, wl_max=700, height=1):
     if ax is None:
         ax = plt.gca()
 
-    wl = cmf[wl_min:wl_max].index.values
+    print(cmf)
+    wl = cmf.loc[wl_min:wl_max].index.values
+    print(wl)
     rgb = wl_to_rgb(wl)
+    print(rgb)
     plot = ax.bar(wl, height=height, color=rgb, width=np.diff(wl)[0], lw=0)
     for b in plot:
         b.set_rasterized(True)

@@ -28,7 +28,11 @@ build/soak19.pdf: FORCE
 		--output-directory=build \
 		soak19.tex
 
-build/plots/%.pdf: scripts/plot_%.py matplotlibrc_pgf scripts/soak19.py | build/plots
+
+$(addprefix build/plots/, $(addsuffix .pdf, gamut gamut_srgb cone_response cone_response_matrix spectrum0 photopic)): scripts/soak19.py
+
+
+build/plots/%.pdf: scripts/plot_%.py matplotlibrc_pgf | build/plots
 	MATPLOTLIBRC=matplotlibrc_pgf TEXINPUTS=$$(pwd): python $<
 
 build/plots/u_cmaps.pdf: images/dortmunder_u_rgb.jpg

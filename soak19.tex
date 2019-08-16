@@ -96,7 +96,7 @@
 \bumper{Menschliche Farbwahrnehmung}
 
 \begin{frame}[c]{Geschichte}
-  \begin{columns}[onlytextwidth]
+  \begin{columns}[c, onlytextwidth]
     \hfill
     \begin{column}{0.59\textwidth}
       \begin{itemize}
@@ -110,23 +110,18 @@
           \end{tabular}
         \item Erster Nachweis der Zapfen (Svaetichin, 1956) 
       \end{itemize}
+      \begin{center}
+        \includegraphics[width=0.7\linewidth]{images/YoungHelm.jpg}
+
+        [v. Helmholtz, 1894]
+      \end{center}
     \end{column}
     \hfill%
     \begin{column}{0.39\textwidth}
-      \hfill%
-      \vfill%
-      \centering
-      \only<1>{%
-        \includegraphics[width=\linewidth, height=0.90\textheight, keepaspectratio]{images/goethe_farbenkreis.jpg}
+      \centering\hfill%
+      \includegraphics[width=\linewidth, height=0.90\textheight, keepaspectratio]{images/goethe_farbenkreis.jpg}
 
-        [Goethe, 1809]
-      }%
-      \only<2>{%
-        \includegraphics[width=\linewidth]{images/YoungHelm.jpg}
-
-        [v. Helmholtz, 1894]
-      }%
-      \vfill%
+      [Goethe, 1809]
     \end{column}%
   \end{columns}%
 \end{frame}
@@ -198,7 +193,7 @@
     \item Farben lassen sich als 3-Vektoren Darstellen
     \item Geeignete Basis?
     \item Welche Bedeutung haben Abstände?
-    \item Wie finden wir Größen wie Buntton, Sättingung, Helligkeit wieder?
+    \item Wie finden wir Größen wie Buntton, Sättigung, Helligkeit wieder?
   \end{itemize}
 
   \Large $⇒{}$ Entwicklung zahlreicher Farbmodelle
@@ -246,12 +241,20 @@
 
 \begin{frame}{CIE L*a*b* 1976}
   \begin{columns}[onlytextwidth]%
-    \begin{column}{0.495\textwidth}%
+    \begin{column}{0.55\textwidth}%
       \only<1>{\includegraphics{build/plots/lab_20.pdf}}%
       \only<2>{\includegraphics{build/plots/lab_50.pdf}}%
       \only<3>{\includegraphics{build/plots/lab_80.pdf}}%
     \end{column}%
-    \begin{column}{0.495\textwidth}%
+    \begin{column}{0.44\textwidth}%
+      \begin{itemize}
+        \item Distanz mit Wahrnehmung verknüpft
+        \item Sehr gut für weit entfernte Farben
+        \item Schwach für Farben nah beieinander
+        \item Einfache Transformation aus XYZ:
+      \end{itemize}
+      \texttt{\small Lab = matrix @ ((XYZ / XYZ\_w)**(1/3))}
+
       \begin{description}
         \item[L] Luminanz
         \item[a] Grün-Rot-Achse
@@ -261,8 +264,63 @@
   \end{columns}%
 \end{frame}
 
-\begin{frame}{CMYK – Warum Drucken schwer ist}
+\begin{frame}[c]{CIECAM02(-UCS) (2002)}
+  \begin{columns}[t, onlytextwidth]%
+    \begin{column}{0.45\textwidth}%
+      \textbf{\Large CIECAM02}
+
+      \begin{itemize}
+        \item State of the Art
+        \item Deutliche Verbesserung gegenüber Lab für Farbwahrnehmung
+        \item Kein Modell für Farbdistanz
+      \end{itemize}
+
+      Zapfenantwort ${}→ A, a,b → {}$ 6 weitere Größen:
+      \begin{description}[$M$]
+        \item[$J$] Lightness (relative Helligkeit)
+        \item[$Q$] Brightness (absolute Helligkeit) \\[\baselineskip]
+        \item[$C$] Chroma (relative Buntheit)
+        \item[$M$] Colorfulness (absolute Buntheit)
+        \item[$s$] Saturation (Sättigung) \\[\baselineskip]
+        \item[$h$] Hue angle (Farbwinkel, Buntton)
+        \item[$H$] Hue composition (Bunttonquadratur)
+      \end{description}
+    \end{column}
+    \begin{column}{0.45\textwidth}%
+      \textbf{\Large CIECAM02-UCS}
+      \begin{itemize}
+        \item Transformation von \texttt{CIECAM02}  
+        \item Aktuell bestes Modell für Farbdistanz
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
+
+\begin{frame}{CMYK – Warum Drucken schwer ist}
+  \begin{columns}[c, onlytextwidth]%
+    \begin{column}{0.35\textwidth}%
+      \begin{tikzpicture}[scale=0.66]
+        \input{colormixing_subtractive.tex}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.6\textwidth}%
+      \begin{itemize}
+        \item Bis jetzt: additive Farbmischung
+        \item Drucken mit Tinten/Pigmenten: Subtraktive Farbmischung
+        \item Kombination aus Papier und Tinten
+        \item Für jede Kombination aus Papier-Tinte-Drucker-Beobachtungsbedingungen
+          ein CMYK-Farbraum
+        \item Zuverlässige Farbwiedergabe erfordert
+          \begin{itemize}
+            \item Farbprofile für Papier/Tinte
+            \item Kalibrierte Monitore mit möglichst großem Gamut (AdobeRGB)
+            \item Tools die das alles verstehen und Vorschauen erzeugen
+            \item Anpassung von Farben außerhalb des jeweiligen Gamuts
+          \end{itemize}
+      \end{itemize}
+    \end{column}%
+  \end{columns}%
+\end{frame}%
 
 
 \section{Farbfehlsichtigkeit}
