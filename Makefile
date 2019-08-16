@@ -9,6 +9,8 @@ build/soak19.pdf: build/plots/u_sw.png
 build/soak19.pdf: build/plots/cone_response.pdf
 build/soak19.pdf: build/plots/cone_response_matrix.pdf
 build/soak19.pdf: build/plots/lab_50.pdf
+build/soak19.pdf: build/plots/gamut.pdf
+build/soak19.pdf: build/plots/gamut_srgb.pdf
 build/soak19.pdf: build/plots/photopic.pdf
 build/soak19.pdf: build/plots/cmap_jet.pdf
 build/soak19.pdf: build/plots/cmap_viridis.pdf
