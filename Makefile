@@ -17,7 +17,10 @@ build/soak19.pdf: build/plots/cmap_viridis.pdf
 build/soak19.pdf: build/plots/gamut.pdf
 build/soak19.pdf: build/plots/gamut_srgb.pdf
 build/soak19.pdf: build/plots/spectrum0.pdf
+build/soak19.pdf: build/plots/sequential.pdf
+build/soak19.pdf: build/plots/diverging.pdf
 build/soak19.pdf: build/plots/gamma_srgb.pdf
+build/soak19.pdf: build/plots/iris.pdf
 build/soak19.pdf: build/plots/europe_divnorm.pdf build/plots/europe_jet.pdf
 build/soak19.pdf: build/plots/fireworks_deuter_50.jpg build/plots/fireworks_deuter_100.jpg
 build/soak19.pdf: FORCE
@@ -32,7 +35,7 @@ build/soak19.pdf: FORCE
 $(addprefix build/plots/, $(addsuffix .pdf, gamut gamut_srgb cone_response cone_response_matrix spectrum0 photopic)): scripts/soak19.py
 
 
-build/plots/%.pdf: scripts/plot_%.py matplotlibrc_pgf | build/plots
+build/plots/%.pdf: scripts/plot_%.py matplotlibrc_pgf header-matplotlib.tex | build/plots
 	MATPLOTLIBRC=matplotlibrc_pgf TEXINPUTS=$$(pwd): python $<
 
 build/plots/u_cmaps.pdf: images/dortmunder_u_rgb.jpg

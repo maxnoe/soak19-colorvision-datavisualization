@@ -274,7 +274,7 @@
         \item Deutliche Verbesserung gegenüber Lab für Farbwahrnehmung
         \item Kein Modell für Farbdistanz
       \end{itemize}
-
+      \vspace{1cm}
       Zapfenantwort ${}→ A, a,b → {}$ 6 weitere Größen:
       \begin{description}[$M$]
         \item[$J$] Lightness (relative Helligkeit)
@@ -409,12 +409,52 @@
   \makebox[\linewidth]{\includegraphics[width=\paperwidth, height=\paperheight, keepaspectratio]{build/plots/cmap_viridis.pdf}}
 \end{frame}
 
+\begin{frame}[c]{Sequentielle Colormaps}
+  \begin{itemize}
+    \item Für alle numerischen Daten wo
+      keine Struktur vorhanden / bekannt ist
+    \item Nur 5 Colormaps in \texttt{matplotlib} mit gleichmäßiger Wahrnehmung
+    \item Sobald man mehr über die Daten weiß, 
+      angepasste Colormaps/Normierungen oft sinnvoller \\
+    \url{https://matplotlib.org/3.1.1/tutorials/colors/colormaps.html}
+  \end{itemize}
+  \vspace{0.5cm}
+  \includegraphics{build/plots/sequential.pdf}
+\end{frame}
+
+\begin{frame}[c]{Divergierende Colormaps}
+  \begin{itemize}
+    \item Entfernen sich in zwei Richtungen von neutralem Mittelpunkt
+    \item Gut für Gegensätze \\
+        \begin{tabular}{r @{${}⟷  {}$} l}
+          wärmer & kälter \\
+          positiv korreliert & negativ korreliert \\
+        \end{tabular}
+  \end{itemize} 
+
+  \vspace{1cm}
+
+  \begin{columns}[c, onlytextwidth]
+    \begin{column}{0.4\textwidth}
+      \includegraphics{build/plots/diverging.pdf}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{images/Planck_CMB.jpg}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
 
 \begin{frame}{Spezielle Colormaps für spezielle Daten}%
   \only<1>{\includegraphics{build/plots/europe_jet.pdf}}%
   \only<2>{\includegraphics{build/plots/europe_divnorm.pdf}}%
 \end{frame}%
 
+\bumper{%
+  \texttt{\$ pip install viscm\\ \$ python -m viscm edit}
+}
 
 \begin{frame}[t]{Wahl der Farbskala hat Konsequenzen}
   \begin{center}
@@ -430,7 +470,6 @@
   \small\cite{heartdisease}
 \end{frame}
 
-
 \begin{frame}[t]{Wahl der Farbskala hat Konsequenzen}  
   \centering
 
@@ -441,6 +480,5 @@
     und den Menschen in Ihrer Umgebung erheblichen Schaden zu.
   \end{tcolorbox}
 \end{frame}
-
 
 \end{document}

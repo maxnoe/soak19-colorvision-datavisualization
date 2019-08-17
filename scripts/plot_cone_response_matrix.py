@@ -16,7 +16,7 @@ for ax, (name, c) in zip(axs[::-1], cone.items()):
     wl = c.index.values
     ax.barh(wl, width=10**c.values, height=5, color=wl_to_rgb(wl))
     ax.set_title(name)
-    ax.set_ylim(390, 700)
+    ax.set_ylim(700, 390)
 
 fig.tight_layout()
 fig.savefig(f'build/plots/cone_response_matrix.pdf')
