@@ -7,6 +7,7 @@ build/soak19.pdf: build/plots/norainbow.pdf
 build/soak19.pdf: build/plots/colorblind_response.pdf
 build/soak19.pdf: build/plots/u_sw.png
 build/soak19.pdf: build/plots/cone_response.pdf
+build/soak19.pdf: build/relevant_xkcd.png
 build/soak19.pdf: build/plots/cone_response_matrix.pdf
 build/soak19.pdf: build/plots/lab_50.pdf
 build/soak19.pdf: build/plots/gamut.pdf
@@ -66,6 +67,9 @@ build/plots/spectrum0.pdf: scripts/plot_spectra.py
 
 build/plots:
 	mkdir -p $@
+
+build/relevant_xkcd.png: | build
+	curl -Lo $@ https://imgs.xkcd.com/comics/dress_color_2x.png 
 
 
 FORCE:
