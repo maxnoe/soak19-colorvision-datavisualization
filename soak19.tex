@@ -100,7 +100,7 @@
     \hfill
     \begin{column}{0.59\textwidth}
       \begin{itemize}
-        \item Erste physiologische Versuche durch Johann Wolfgang von Goethe (Zur Farbenlehre, 1810) \\
+        \item Erste physiologische Versuche durch\\ Johann Wolfgang von Goethe (Zur Farbenlehre, 1810) \\
         \item Dreifarbentheorie (Young \& v. Helmholtz, 1804 / 1850)
         \item Gegenfarbtheorie (Hering 1878) \\
           \begin{tabular}{r @{${}⟷  {}$} l}
@@ -291,17 +291,6 @@
         \item Deutliche Verbesserung gegenüber Lab für Farbwahrnehmung
         \item Kein Modell für Farbdistanz
       \end{itemize}
-      \vspace{1cm}
-      Zapfenantwort ${}→ A, a,b → {}$ 6 weitere Größen:
-      \begin{description}[$M$]
-        \item[$J$] Lightness (relative Helligkeit)
-        \item[$Q$] Brightness (absolute Helligkeit) \\[\baselineskip]
-        \item[$C$] Chroma (relative Buntheit)
-        \item[$M$] Colorfulness (absolute Buntheit)
-        \item[$s$] Saturation (Sättigung) \\[\baselineskip]
-        \item[$h$] Hue angle (Farbwinkel, Buntton)
-        \item[$H$] Hue composition (Bunttonquadratur)
-      \end{description}
     \end{column}
     \begin{column}{0.45\textwidth}%
       \textbf{\Large CIECAM02-UCS}
@@ -311,22 +300,44 @@
       \end{itemize}
     \end{column}
   \end{columns}
+
+  \vspace{1cm}
+  Zapfenantwort ${}→ A, a,b → {}$ 6 weitere Größen:
+
+  \begin{columns}[t, onlytextwidth]%
+    \begin{column}{0.45\textwidth}%
+      \begin{description}[$M$]
+        \item[$A$] Achromatischer Stimulus 
+        \item[$a$] Rot-Grün Achse
+        \item[$b$] Gelb-Blau Achse\\[\baselineskip]
+        \item[$J$] Lightness (relative Helligkeit)
+        \item[$Q$] Brightness (absolute Helligkeit) 
+      \end{description}
+    \end{column}
+    \begin{column}{0.45\textwidth}%
+      \begin{description}[$M$]
+        \item[$C$] Chroma (relative Buntheit)
+        \item[$M$] Colorfulness (absolute Buntheit)
+        \item[$s$] Saturation (Sättigung) \\[\baselineskip]
+        \item[$h$] Hue angle (Farbwinkel, Buntton)
+        \item[$H$] Hue composition (Bunttonquadratur)
+      \end{description}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{CMYK – Warum Drucken schwer ist}
   \begin{columns}[c, onlytextwidth]%
-    \begin{column}{0.35\textwidth}%
+    \begin{column}{0.3\textwidth}%
       \begin{tikzpicture}[scale=0.66]
         \input{colormixing_subtractive.tex}
       \end{tikzpicture}
     \end{column}
-    \begin{column}{0.6\textwidth}%
+    \begin{column}{0.65\textwidth}%
       \begin{itemize}
-        \item Bis jetzt: additive Farbmischung
         \item Drucken mit Tinten/Pigmenten: Subtraktive Farbmischung
         \item Kombination aus Papier und Tinten
-        \item Für jede Kombination aus Papier-Tinte-Drucker-Beobachtungsbedingungen
-          ein CMYK-Farbraum
+        \item Für jede Kombination ein CMYK-Farbraum
         \item Zuverlässige Farbwiedergabe erfordert
           \begin{itemize}
             \item Farbprofile für Papier/Tinte
@@ -457,7 +468,8 @@
     \end{column}
     \begin{column}{0.6\textwidth}
       \centering
-      \includegraphics[width=\linewidth]{images/Planck_CMB.jpg}
+      \includegraphics[width=\linewidth]{images/Planck_CMB.jpg} \\
+      {\tiny [ESA: Planck CMB]}
     \end{column}
   \end{columns}
 \end{frame}
